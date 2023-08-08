@@ -1,8 +1,25 @@
 local lvim_lsp = require('lvim.lsp')
 local ts = require('typescript')
+local nvim_lsp = require("lspconfig")
 
 -- configure tsserver server manually.
 vim.list_extend(lvim.lsp.automatic_configuration.skipped_servers, { "tsserver" })
+
+nvim_lsp.solargraph.setup {
+  filetypes = { "ruby", "rakefile" },
+  root_dir = nvim_lsp.util.root_pattern("Gemfile", ".git", "."),
+  settings = {
+    solargraph = {
+      autoformat = true,
+      completion = true,
+      diagnostic = true,
+      folding = true,
+      references = true,
+      rename = true,
+      symbols = true
+    }
+  }
+}
 
 local common_on_attach = lvim_lsp.common_on_attach
 local common_capabilities = lvim_lsp.common_capabilities()
@@ -16,6 +33,8 @@ lvim.lsp.on_attach_callback = function(client, bufnr)
     vim.cmd(':hi DiagnosticHint guifg=White ctermfg=White')
   end
 end
+
+
 
 -- Typescript config using typescript.nvim
 ts.setup({

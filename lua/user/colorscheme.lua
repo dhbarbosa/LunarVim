@@ -18,8 +18,8 @@ local themes = {
   dracula = "dracula"
 }
 
-lvim.transparent_window = true
-lvim.colorscheme = themes.dracula
+lvim.transparent_window = false
+lvim.colorscheme = themes.tokyonight_moon
 
 local extra_opts = {
   sonokai = {

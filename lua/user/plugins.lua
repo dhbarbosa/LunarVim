@@ -1,6 +1,7 @@
 lvim.plugins = {
   {
     "zbirenbaum/copilot.lua",
+    "mfussenegger/nvim-jdtls",
     cmd = "Copilot",
     event = "InsertEnter",
     config = function()
@@ -147,6 +148,9 @@ table.insert(lvim.plugins, {
     if ok then cmp.setup({}) end
   end,
 })
+
+vim.list_extend(lvim.lsp.automatic_configuration.skipped_servers, { "jdtls" })
+
 
 lvim.builtin.telescope.on_config_done = function(telescope)
   pcall(telescope.load_extension, "frecency")
