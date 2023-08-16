@@ -21,6 +21,25 @@ nvim_lsp.solargraph.setup {
   }
 }
 
+nvim_lsp.phpactor.setup {
+  filetypes = { "php" },
+  root_dir = nvim_lsp.util.root_pattern("composer.json", ".git"),
+  cmd = { "phpactor", "language-server" },
+  settings = {
+    phpactor = {
+      autoformat = true,
+      completion = true,
+      diagnostic = true,
+      folding = true,
+      references = true,
+      rename = true,
+      symbols = true
+    }
+  }
+
+}
+
+
 local common_on_attach = lvim_lsp.common_on_attach
 local common_capabilities = lvim_lsp.common_capabilities()
 
